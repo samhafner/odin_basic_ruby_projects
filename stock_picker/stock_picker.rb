@@ -1,16 +1,17 @@
 def stock_picker(stock_prices)
   profits = []
+  max_profit_info = [nil, nil]
 
   stock_prices.each_with_index do |buy_price, buy_date_index|
     stock_prices.each_with_index do |sell_price, sell_date_index|
       next if sell_date_index <= buy_date_index
+      profit = sell_price - buy_price
+      max_profit_info = [profit, [buy_date_index, sell_date_index]] if max_profit_info[0].nil? || profit > max_profit_info[0]
       profits << [sell_price - buy_price, [buy_date_index, sell_date_index]]
     end
   end
 
-  max_profit = profits.sort { |a, b| b[0] <=> a[0] }.find { |a| a[1][0] < a[1][1] }
-
-  max_profit[1]
+  max_profit_info[1]
 end
 
 
