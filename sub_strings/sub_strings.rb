@@ -1,17 +1,12 @@
 def substrings(text, dictionary)
-  arr_words = text.downcase.split
+  text = text.downcase
   results = Hash.new(0)
-  dictionary.each do |string|
-    string = string.downcase
-    arr_words.each do |word|
-      if word.include?(string)
-        results[string] += 1
-      end
-    end
+  dictionary.each do |word|
+    matches = text.scan(word.downcase).length
+    results[word] = matches unless matches == 0
   end
   results
 end
-
 
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 p substrings("below", dictionary)
