@@ -1,5 +1,5 @@
-def substrings(words, dictionary)
-  arr_words = words.split
+def substrings(text, dictionary)
+  arr_words = text.downcase.split
   results = Hash.new(0)
   dictionary.each do |string|
     string = string.downcase
